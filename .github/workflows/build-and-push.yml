@@ -1,4 +1,4 @@
-name: Build and Push devcontainer
+name: Build and Push Dev Container
 
 on:
   push:

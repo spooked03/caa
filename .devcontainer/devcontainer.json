@@ -1,9 +1,6 @@
 {
   "name": "caa Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
+  "image": "ghcr.io/spooked03/caa:latest",
   "customizations": {
     "vscode": {
       "extensions": [
