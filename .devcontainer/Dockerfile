@@ -20,25 +20,14 @@ RUN curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opent
     /tmp/install-opentofu.sh --install-method deb --install-path /usr/local/bin && \
     rm /tmp/install-opentofu.sh
 
-# 3. Install Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
-    rm -rf /var/lib/apt/lists/*
-
-# 4. Install Ansible
-RUN apt-get update && apt-get install -y ansible ansible-lint python3-pip && \
-    pip3 install --upgrade pyvmomi --break-system-packages && \
-    ansible-galaxy collection install community.vmware && \
-    ansible-galaxy collection install community.vmware && \
-    rm -rf /var/lib/apt/lists/*
-
-# 5. Install sops
+# 3. Install sops
 RUN curl -LO https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64 && \
     mv sops-v3.11.0.linux.amd64 /usr/local/bin/sops && \
     chmod +x /usr/local/bin/sops
 
 RUN chsh -s /usr/bin/fish
 
-# 6. Install OVF Tool
+# 4. Install OVF Tool
 COPY .devcontainer/VMware-ovftool-linux.zip /tmp/
 
 # Unzip and install
