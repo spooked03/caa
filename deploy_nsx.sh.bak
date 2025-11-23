@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Configuration Variables
+mgrformfactor="small"
+ipAllocationPolicy="fixedPolicy"
+mgrdatastore="datastore1"
+mgrnetwork="VM Network"
+mgrdomain="lab.local"
+
+mgrname01="nsx-manager1"
+mgrhostname01="nsx-manager1"
+mgrip01="192.168.1.22"
+
+mgrnetmask="255.255.255.0"
+mgrgw="192.168.1.1"
+mgrdns="192.168.1.1"
+mgrntp="time.cloudflare.com"
+
+# Secrets and Boolean Flags
+mgrpasswd='Welkom01!123'
+mgrssh="True"
+mgrroot="True"
+logLevel="trivia"
+
+# vCenter Configuration
+vcadmin="administrator@vsphere.local"
+vcpass='Welkom01!'
+vcip="192.168.1.21"
+mgresxhost01="192.168.1.20"
+
+# Path to OVA and OVF Tool
+ovapath="/home/student/vcsa/nsx.ova"
+ovftool_bin="vcsa-cli-installer/lin64/ovftool/ovftool"
+
+mgrvmfolder="" # Optional: Specify folder in vCenter"
+
+# Deploy Command
+# Note: 'Network 1' is the default network name in the NSX OVA.
+"$ovftool_bin" \
+    --name="$mgrname01" \
+    --X:injectOvfEnv \
+    --X:logFile="ovftool.log" \
+    --sourceType=OVA \
+    --vmFolder="$mgrvmfolder" \
+    --allowExtraConfig \
+    --datastore="$mgrdatastore" \
+    --net:"Network 1=$mgrnetwork" \
+    --acceptAllEulas \
+    --skipManifestCheck \
+    --noSSLVerify \
+    --diskMode=thin \
+    --quiet \
+    --hideEula \
+    --powerOn \
+    --deploymentOption="$mgrformfactor" \
+    --ipProtocol=IPv4 \
+    --ipAllocationPolicy="$ipAllocationPolicy" \
+    --prop:nsx_ip_0="$mgrip01" \
+    --prop:nsx_netmask_0="$mgrnetmask" \
+    --prop:nsx_gateway_0="$mgrgw" \
+    --prop:nsx_dns1_0="$mgrdns" \
+    --prop:nsx_domain_0="$mgrdomain" \
+    --prop:nsx_ntp_0="$mgrntp" \
+    --prop:nsx_isSSHEnabled="$mgrssh" \
+    --prop:nsx_passwd_0="$mgrpasswd" \
+    --prop:nsx_cli_passwd_0="$mgrpasswd" \
+    --prop:nsx_cli_audit_passwd_0="$mgrpasswd" \
+    --prop:nsx_hostname="$mgrhostname01" \
+    --prop:nsx_allowSSHRootLogin="$mgrroot" \
+    --prop:nsx_role="NSX Manager" \
+    --X:logLevel="$logLevel" \
+    "$ovapath" \
+    "vi://$vcadmin:$vcpass@$vcip/?ip=$mgresxhost01"

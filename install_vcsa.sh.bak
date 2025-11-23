@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Configuration
+DEPLOY_CMD="/home/student/vcsa/vcsa-cli-installer/lin64/vcsa-deploy"
+TEMPLATE_FILE="/home/student/vcsa/vcsa.json"
+
+# Run VCSA deploy
+"$DEPLOY_CMD" install --accept-eula "$TEMPLATE_FILE"
