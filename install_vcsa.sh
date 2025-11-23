@@ -8,9 +8,10 @@ GENERATED_FILE="/home/student/vcsa/vcsa.json"
 
 # Run VCSA deploy
 # Generate JSON using jq to fill in the template
-jq --arg esxi_pass "$(jq -r '.ESXI_PASSWORD' secrets.json)" \
-   --arg os_pass "$(jq -r '.VCSA_OS_PASSWORD' secrets.json)" \
-   --arg sso_pass "$(jq -r '.VCSA_SSO_PASSWORD' secrets.json)" \
+SECRETS=$(sops -d secrets.json)
+jq --arg esxi_pass "$(echo "$SECRETS" | jq -r '.ESXI_PASSWORD')" \
+   --arg os_pass "$(echo "$SECRETS" | jq -r '.VCSA_OS_PASSWORD')" \
+   --arg sso_pass "$(echo "$SECRETS" | jq -r '.VCSA_SSO_PASSWORD')" \
    '.new_vcsa.esxi.password = $esxi_pass | 
     .new_vcsa.os.password = $os_pass | 
     .new_vcsa.sso.password = $sso_pass' \

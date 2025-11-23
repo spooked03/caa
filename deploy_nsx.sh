@@ -3,8 +3,9 @@
 # Configuration Variables
 # Configuration Variables
 # Read secrets using jq
-mgrpasswd=$(jq -r '.NSX_MGR_PASSWORD' secrets.json)
-vcpass=$(jq -r '.VC_PASSWORD' secrets.json)
+SECRETS=$(sops -d secrets.json)
+mgrpasswd=$(echo "$SECRETS" | jq -r '.NSX_MGR_PASSWORD')
+vcpass=$(echo "$SECRETS" | jq -r '.VC_PASSWORD')
 
 mgrformfactor="small"
 ipAllocationPolicy="fixedPolicy"
