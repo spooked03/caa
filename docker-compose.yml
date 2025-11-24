@@ -1,0 +1,15 @@
+services:
+  caa-dev:
+    image: ghcr.io/spooked03/caa:latest
+    container_name: caa-dev
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    environment:
+      - SOPS_AGE_KEY_FILE=/workspace/config/key.txt
+    volumes:
+      #- /path/to/your/local/key.txt:/workspace/config/key.txt:ro
+      - .:/workspace
+    command: /usr/bin/fish
+    user: root
+    restart: unless-stopped
