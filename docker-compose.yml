@@ -9,8 +9,8 @@ services:
       - SOPS_AGE_KEY_FILE=/workspace/config/key.txt
     volumes:
       #- /path/to/your/local/key.txt:/workspace/config/key.txt:ro
-      - ./caa:/workspace
-      - /home/student/vcsa/:/workspace/vcsa/
+      - ./:/workspace
+      - /home/student/vcsa/:/workspace/vc/
     command: /usr/bin/fish
     user: root
     restart: unless-stopped
