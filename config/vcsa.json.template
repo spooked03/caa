@@ -16,7 +16,7 @@
             "thin_disk_mode": true,
             "deployment_option": "tiny",
             "name": "vcenter",
-            "ovftool_path": "/home/student/vcsa/vcsa-cli-installer/lin64/ovftool/ovftool"
+            "ovftool_path": "/usr/local/bin/ovftool"
         },
         "network": {
             "ip_family": "ipv4",
