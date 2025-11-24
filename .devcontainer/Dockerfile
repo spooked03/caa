@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     lsb-release \
     apt-transport-https \
+    iputils-ping \
     vim \
     age \
     jq \
