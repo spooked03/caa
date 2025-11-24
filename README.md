@@ -1,7 +1,5 @@
 # VMware VCSA & NSX Automation
 
-This repository contains automation scripts for deploying VMware vCenter Server Appliance (VCSA) and NSX Manager. It utilizes `sops` for secret management to ensure sensitive credentials are not hardcoded in the scripts.
-
 ## Project Structure
 
 - `deploy_nsx.sh`: Script to deploy NSX Manager using `ovftool`.
@@ -9,68 +7,41 @@ This repository contains automation scripts for deploying VMware vCenter Server 
 - `secrets.json`: Encrypted JSON file containing sensitive passwords (managed by SOPS).
 - `vcsa.json.template`: Template configuration for VCSA deployment.
 
-## Prerequisites
-
-Ensure the following tools are installed and available in your environment:
-
-- **Bash**: Shell environment.
-- **jq**: Command-line JSON processor.
-- **SOPS**: Secrets OPerationS for managing encrypted secrets.
-- **VMware OVF Tool**: Required for NSX deployment.
-- **VCSA CLI Installer**: Required for VCSA deployment.
-
 ## Setup
+Use the available devcontainer to set up your environment or setup all the tools manually.
 
 1. **Secrets Management**:
-   This project uses `sops` to manage secrets. Ensure you have the correct keys configured to decrypt `secrets.json`.
+   This project uses `sops` to manage secrets. Ensure you have the correct keys to decrypt `secrets.json`. If using devcontainer, the key will be mounted automatically if placed like /config/key.txt. Else manually set environment variable `SOPS_AGE_KEY_FILE` to the path of your age key.
+   for example:
+   ```bash
+   export SOPS_AGE_KEY_FILE=key.txt
+   ```
    
    To view/edit secrets:
    ```bash
    sops secrets.json
    ```
 
-   The `secrets.json` should contain the following keys:
-   - `NSX_MGR_PASSWORD`
-   - `VC_PASSWORD`
-   - `ESXI_PASSWORD`
-   - `VCSA_OS_PASSWORD`
-   - `VCSA_SSO_PASSWORD`
-
 2. **Configuration**:
-   - Review `deploy_nsx.sh` and update variables such as IPs, hostnames, and file paths (currently hardcoded to `/home/student/vcsa/...`).
-   - Review `vcsa.json.template` to ensure network and host configurations match your environment.
+   - `secrets.json` set the correct passwords to be used in the scripts.
+   - `deploy_nsx.sh` update variables to match your environment. Make sure the OVFtool path is correct.
+   - `install_vcsa.sh` before running update variables to match your environment in the `vcsa.json.template` file. Make sure the OVFtool path is correct.
+   
+ 
 
 ## Usage
+to deploy simply run the scripts for the components you want to deploy.
 
 ### Deploying VCSA
 
-Run the installation script:
-
 ```bash
-./install_vcsa.sh
+../scripts/install_vcsa.sh
 ```
 
-This script will:
-1. Decrypt secrets from `secrets.json`.
-2. Generate a valid `vcsa.json` config from the template.
-3. Execute the `vcsa-deploy` command.
-4. Clean up the generated config file.
 
 ### Deploying NSX Manager
 
-Run the deployment script:
-
 ```bash
-./deploy_nsx.sh
+../scripts/deploy_nsx.sh
 ```
 
-This script will:
-1. Decrypt secrets.
-2. Generate an `ovftool.cfg` file.
-3. Deploy the NSX Manager OVA to the specified vCenter/ESXi host.
-4. Clean up the config file.
-
-## Recommendations
-
-- **Directory Structure**: Consider moving scripts to a `scripts/` directory and configuration templates to a `config/` directory to keep the root clean.
-- **Paths**: Avoid hardcoding absolute paths (like `/home/student/...`) in scripts. Use relative paths or environment variables.
