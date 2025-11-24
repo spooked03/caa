@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     apt-transport-https \
     vim \
     age \
+    jq \
     fish \
     && rm -rf /var/lib/apt/lists/*
 
