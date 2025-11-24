@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     lsb-release \
     apt-transport-https \
+    vim \
     age \
     fish \
     && rm -rf /var/lib/apt/lists/*
@@ -25,8 +26,6 @@ RUN curl -LO https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.1
     mv sops-v3.11.0.linux.amd64 /usr/local/bin/sops && \
     chmod +x /usr/local/bin/sops
 
-RUN chsh -s /usr/bin/fish
-
 # 4. Install OVF Tool
 COPY .devcontainer/VMware-ovftool-linux.zip /tmp/
 
@@ -36,5 +35,7 @@ RUN unzip /tmp/VMware-ovftool-linux.zip -d /usr/local/lib/ && \
     chmod +x /usr/local/lib/ovftool/ovftool.bin && \
     ln -s /usr/local/lib/ovftool/ovftool /usr/local/bin/ovftool && \
     rm /tmp/VMware-ovftool-linux.zip
+
+RUN chsh -s /usr/bin/fish
 
 WORKDIR /workspace
