@@ -87,11 +87,11 @@ chmod +x scripts/specific_script.sh
 ### Deploying VCSA
 
 ```bash
-../scripts/install_vcsa.sh
+./scripts/install_vcsa.sh
 ```
 
 ### Deploying NSX Manager
 
 ```bash
-../scripts/deploy_nsx.sh
+./scripts/deploy_nsx.sh
 ```
