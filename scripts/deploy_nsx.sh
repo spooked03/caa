@@ -22,15 +22,15 @@ mgrformfactor="small"
 ipAllocationPolicy="fixedPolicy"
 mgrdatastore="datastore1"
 mgrnetwork="VM Network"
-mgrdomain="lab.local"
+mgrdomain="ad.home.arpa"
 
-mgrname01="nsx-manager1"
-mgrhostname01="nsx-manager1"
+mgrname01="nsx-m1"
+mgrhostname01="nsx-m1.ad.home.arpa"
 mgrip01="192.168.1.22"
 
 mgrnetmask="255.255.255.0"
 mgrgw="192.168.1.1"
-mgrdns="192.168.1.1"
+mgrdns="192.168.1.10"
 mgrntp="time.cloudflare.com"
 
 # Secrets and Boolean Flags
