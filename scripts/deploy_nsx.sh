@@ -46,9 +46,9 @@ vcip="192.168.1.21"
 mgresxhost01="192.168.1.20"
 
 # Path to OVA and OVF Tool
-ovapath="/home/student/vcsa/nsx.ova"
+ovapath="$PROJECT_ROOT/vc/nsx.ova"
 # Updated to absolute path based on install_vcsa.sh location assumption
-ovftool_bin="/home/student/vcsa/vcsa-cli-installer/lin64/ovftool/ovftool"
+ovftool_bin="/usr/local/bin/ovftool"
 
 mgrvmfolder="" # Optional: Specify folder in vCenter"
 
