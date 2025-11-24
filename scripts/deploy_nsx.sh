@@ -1,9 +1,20 @@
 #!/bin/bash
 
+# Determine script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
 # Configuration Variables
-# Configuration Variables
+SECRETS_FILE="$PROJECT_ROOT/config/secrets.json"
+
+# Check if secrets file exists
+if [ ! -f "$SECRETS_FILE" ]; then
+    echo "Error: Secrets file not found at $SECRETS_FILE"
+    exit 1
+fi
+
 # Read secrets using jq
-SECRETS=$(sops -d secrets.json)
+SECRETS=$(sops -d "$SECRETS_FILE")
 mgrpasswd=$(echo "$SECRETS" | jq -r '.NSX_MGR_PASSWORD')
 vcpass=$(echo "$SECRETS" | jq -r '.VC_PASSWORD')
 
@@ -36,14 +47,17 @@ mgresxhost01="192.168.1.20"
 
 # Path to OVA and OVF Tool
 ovapath="/home/student/vcsa/nsx.ova"
-ovftool_bin="vcsa-cli-installer/lin64/ovftool/ovftool"
+# Updated to absolute path based on install_vcsa.sh location assumption
+ovftool_bin="/home/student/vcsa/vcsa-cli-installer/lin64/ovftool/ovftool"
 
 mgrvmfolder="" # Optional: Specify folder in vCenter"
 
 # Deploy Command
 # Note: 'Network 1' is the default network name in the NSX OVA.
 # Generate OVF Tool Config File
-cat <<EOF > ovftool.cfg
+OVFTOOL_CFG="$SCRIPT_DIR/ovftool.cfg"
+
+cat <<EOF > "$OVFTOOL_CFG"
 --name=$mgrname01
 --X:injectOvfEnv
 --X:logFile=ovftool.log
@@ -79,9 +93,9 @@ cat <<EOF > ovftool.cfg
 EOF
 
 "$ovftool_bin" \
-    --configFile=ovftool.cfg \
+    --configFile="$OVFTOOL_CFG" \
     "$ovapath" \
     "vi://$vcadmin:$vcpass@$vcip/?ip=$mgresxhost01"
 
 # Cleanup
-rm ovftool.cfg
+rm "$OVFTOOL_CFG"

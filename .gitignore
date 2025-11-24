@@ -1,0 +1,11 @@
+# Secrets and Keys
+key.txt
+
+# Temporary files
+ovftool.cfg
+vcsa.json
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
