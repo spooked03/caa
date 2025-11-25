@@ -47,8 +47,19 @@ mgresxhost01="192.168.1.20"
 
 # Path to OVA and OVF Tool
 ovapath="$PROJECT_ROOT/vc/nsx.ova"
+ova_url="http://192.168.100.10:5000/nsx.ova"
 # Updated to absolute path based on install_vcsa.sh location assumption
 ovftool_bin="/usr/local/bin/ovftool"
+
+# Fetch OVA from the provided mirror if it is missing locally.
+if [ ! -f "$ovapath" ]; then
+    echo "NSX OVA not found at $ovapath. Downloading from $ova_url"
+    mkdir -p "$(dirname "$ovapath")"
+    if ! curl -fL -o "$ovapath" "$ova_url"; then
+        echo "Error: Failed to download NSX OVA from $ova_url"
+        exit 1
+    fi
+fi
 
 mgrvmfolder="" # Optional: Specify folder in vCenter"
 
