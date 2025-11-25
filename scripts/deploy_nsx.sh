@@ -54,48 +54,39 @@ mgrvmfolder="" # Optional: Specify folder in vCenter"
 
 # Deploy Command
 # Note: 'Network 1' is the default network name in the NSX OVA.
-# Generate OVF Tool Config File
-OVFTOOL_CFG="$SCRIPT_DIR/ovftool.cfg"
-
-cat <<EOF > "$OVFTOOL_CFG"
---name="$mgrname01"
---X:injectOvfEnv
---X:logFile=ovftool.log
---sourceType=OVA
---vmFolder="$mgrvmfolder"
---allowExtraConfig
---datastore="$mgrdatastore"
---net:"Network 1"="$mgrnetwork"
---acceptAllEulas
---skipManifestCheck
---noSSLVerify
---diskMode=thin
---quiet
---hideEula
---powerOn
---deploymentOption="$mgrformfactor"
---ipProtocol=IPv4
---ipAllocationPolicy="$ipAllocationPolicy"
---prop:nsx_ip_0="$mgrip01"
---prop:nsx_netmask_0="$mgrnetmask"
---prop:nsx_gateway_0="$mgrgw"
---prop:nsx_dns1_0="$mgrdns"
---prop:nsx_domain_0="$mgrdomain"
---prop:nsx_ntp_0="$mgrntp"
---prop:nsx_isSSHEnabled="$mgrssh"
---prop:nsx_passwd_0="$mgrpasswd"
---prop:nsx_cli_passwd_0="$mgrpasswd"
---prop:nsx_cli_audit_passwd_0="$mgrpasswd"
---prop:nsx_hostname="$mgrhostname01"
---prop:nsx_allowSSHRootLogin="$mgrroot"
---prop:nsx_role="NSX Manager"
---X:logLevel="$logLevel"
-EOF
 
 "$ovftool_bin" \
-    --configFile="$OVFTOOL_CFG" \
+    --name="$mgrname01" \
+    --X:injectOvfEnv \
+    --X:logFile="ovftool.log" \
+    --sourceType=OVA \
+    --vmFolder="$mgrvmfolder" \
+    --allowExtraConfig \
+    --datastore="$mgrdatastore" \
+    --net:"Network 1"="$mgrnetwork" \
+    --acceptAllEulas \
+    --skipManifestCheck \
+    --noSSLVerify \
+    --diskMode=thin \
+    --quiet \
+    --hideEula \
+    --powerOn \
+    --deploymentOption="$mgrformfactor" \
+    --ipProtocol=IPv4 \
+    --ipAllocationPolicy="$ipAllocationPolicy" \
+    --prop:nsx_ip_0="$mgrip01" \
+    --prop:nsx_netmask_0="$mgrnetmask" \
+    --prop:nsx_gateway_0="$mgrgw" \
+    --prop:nsx_dns1_0="$mgrdns" \
+    --prop:nsx_domain_0="$mgrdomain" \
+    --prop:nsx_ntp_0="$mgrntp" \
+    --prop:nsx_isSSHEnabled="$mgrssh" \
+    --prop:nsx_passwd_0="$mgrpasswd" \
+    --prop:nsx_cli_passwd_0="$mgrpasswd" \
+    --prop:nsx_cli_audit_passwd_0="$mgrpasswd" \
+    --prop:nsx_hostname="$mgrhostname01" \
+    --prop:nsx_allowSSHRootLogin="$mgrroot" \
+    --prop:nsx_role="NSX Manager" \
+    --X:logLevel="$logLevel" \
     "$ovapath" \
     "vi://$vcadmin:$vcpass@$vcip/?ip=$mgresxhost01"
-
-# Cleanup
-rm "$OVFTOOL_CFG"
