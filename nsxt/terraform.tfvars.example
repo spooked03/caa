@@ -1,0 +1,21 @@
+nsx_host     = "nsx-manager.example.com"
+nsx_username = "admin"
+nsx_password = "YourPassword123!"
+
+# Infrastructure Details
+vc_id                 = "a2953d0c-dfb2-4cb1-9583-033063442ec8"
+compute_cluster_id    = "domain-c8" # e.g. domain-c8
+datastore_id          = "datastore1" # e.g. datastore-10
+management_network_id = "network-12" # e.g. network-12
+edge_node_data_network_ids = ["network-13", "network-14"] # TEP/Data networks
+
+# Edge Node Details
+edge_node_ip      = "192.168.1.50"
+edge_node_gateway = "192.168.1.1"
+edge_node_hostname = "edge01.example.com"
+edge_cluster_profile_path = "/infra/edge-cluster-profiles/default-edge-high-availability-profile"
+
+# Names
+edge_cluster_name = "Edge-Cluster-01"
+t0_gateway_name   = "T0-Gateway"
+t1_gateway_name   = "T1-Gateway"
