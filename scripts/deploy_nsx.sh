@@ -58,14 +58,14 @@ mgrvmfolder="" # Optional: Specify folder in vCenter"
 OVFTOOL_CFG="$SCRIPT_DIR/ovftool.cfg"
 
 cat <<EOF > "$OVFTOOL_CFG"
---name=$mgrname01
+--name="$mgrname01"
 --X:injectOvfEnv
 --X:logFile=ovftool.log
 --sourceType=OVA
---vmFolder=$mgrvmfolder
+--vmFolder="$mgrvmfolder"
 --allowExtraConfig
---datastore=$mgrdatastore
---net:Network 1=$mgrnetwork
+--datastore="$mgrdatastore"
+--net:"Network 1"="$mgrnetwork"
 --acceptAllEulas
 --skipManifestCheck
 --noSSLVerify
@@ -73,23 +73,23 @@ cat <<EOF > "$OVFTOOL_CFG"
 --quiet
 --hideEula
 --powerOn
---deploymentOption=$mgrformfactor
+--deploymentOption="$mgrformfactor"
 --ipProtocol=IPv4
---ipAllocationPolicy=$ipAllocationPolicy
---prop:nsx_ip_0=$mgrip01
---prop:nsx_netmask_0=$mgrnetmask
---prop:nsx_gateway_0=$mgrgw
---prop:nsx_dns1_0=$mgrdns
---prop:nsx_domain_0=$mgrdomain
---prop:nsx_ntp_0=$mgrntp
---prop:nsx_isSSHEnabled=$mgrssh
---prop:nsx_passwd_0=$mgrpasswd
---prop:nsx_cli_passwd_0=$mgrpasswd
---prop:nsx_cli_audit_passwd_0=$mgrpasswd
---prop:nsx_hostname=$mgrhostname01
---prop:nsx_allowSSHRootLogin=$mgrroot
---prop:nsx_role=NSX Manager
---X:logLevel=$logLevel
+--ipAllocationPolicy="$ipAllocationPolicy"
+--prop:nsx_ip_0="$mgrip01"
+--prop:nsx_netmask_0="$mgrnetmask"
+--prop:nsx_gateway_0="$mgrgw"
+--prop:nsx_dns1_0="$mgrdns"
+--prop:nsx_domain_0="$mgrdomain"
+--prop:nsx_ntp_0="$mgrntp"
+--prop:nsx_isSSHEnabled="$mgrssh"
+--prop:nsx_passwd_0="$mgrpasswd"
+--prop:nsx_cli_passwd_0="$mgrpasswd"
+--prop:nsx_cli_audit_passwd_0="$mgrpasswd"
+--prop:nsx_hostname="$mgrhostname01"
+--prop:nsx_allowSSHRootLogin="$mgrroot"
+--prop:nsx_role="NSX Manager"
+--X:logLevel="$logLevel"
 EOF
 
 "$ovftool_bin" \
