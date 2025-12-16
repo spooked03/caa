@@ -1,6 +1,9 @@
 {
   "name": "caa Dev Container",
-  "image": "ghcr.io/spooked03/caa:latest",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
   "remoteEnv": {
     "SOPS_AGE_KEY_FILE": "/workspaces/caa2/config/key.txt"
   },

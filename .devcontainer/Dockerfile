@@ -28,6 +28,10 @@ RUN curl -LO https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.1
     mv sops-v3.11.0.linux.amd64 /usr/local/bin/sops && \
     chmod +x /usr/local/bin/sops
 
+# 3.1 Install Azure CLI
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+    rm -rf /var/lib/apt/lists/
+
 # 4. Install OVF Tool
 COPY .devcontainer/VMware-ovftool-linux.zip /tmp/
 

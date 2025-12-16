@@ -1,23 +1,23 @@
 # This file is maintained automatically by "tofu init".
 # Manual edits may be lost in future updates.
 
-provider "registry.opentofu.org/vmware/nsxt" {
-  version = "3.10.0"
+provider "registry.opentofu.org/hashicorp/nsxt" {
+  version = "3.11.0"
   hashes = [
-    "h1:sLXe4Idsk1szcUNs3mV3pzJfl7xfpDYBII7BZqin0Y4=",
-    "zh:0ea16f4ab6fd89803e2217da9cfbdd161b9711d686621f594f21ea188491967a",
-    "zh:303b1ab341914e0ff8761113d5af9e7b58d50f01b5ba2f5f9521d7766647c7a4",
-    "zh:35faff59f9184c5f2f6be1b4a70ae5612d38996c8d4f8c86f253cfd135d4987a",
-    "zh:36721c0dc756ccafcef7d6a31776b1dea4b8aa4f11bfadfd4008eb48ed52d8a4",
-    "zh:5c943173b4fa01c9178074d7ebea7f0f925f4a0a343facd3dad8df5fb6aa3d14",
-    "zh:5ef5fe73dd1fbdab8c78c28a4f5974e8d3643182b37a55f83db8fe2fdaf58b47",
-    "zh:727bca7c0430903ed1ce9cad48f32aabef296af2c79008c0d360dd07ca3a8a8f",
-    "zh:9e4421491d1406a086afa5ade9c8f37b0747329bad4f9c5a4f8c47c3a7fe9b90",
-    "zh:b92b88dc4af8c4df3e89467436a95de94a07da566fd2ddde34122cd4d5b6aa3d",
-    "zh:d4b7c5af77fdb96f421990cde1e9a5327c48d31ff17c59d1dcc876b1ef419f95",
-    "zh:d7559f46e6e6a70c9fb7cc5dd59525d1259f8b98a4afed38b67eff24e3f7f1b2",
-    "zh:e120c9a53520d53b24deef86cc50b77c21f581b55f7d6d7a9cea87a3b94f1c9e",
-    "zh:e8071f4da11890f41b184f78dfe94dd0cf340f926bfeb96b2574c3e59b5119ef",
-    "zh:e8e1b6a1c41b73cb986aea71cbe8694a03b323e1238599944aec2dc27dfee555",
+    "h1:Wb416w7uxgTop0RxDzmaDhHCsV502E4b531hsm3t+G8=",
+    "zh:317cb4464e18b2e2d85f059c783d74394039c4282b334b4342a3441e0408cbdc",
+    "zh:480dd158d87708bbc75b22169ded9d2036426580cba2e66ae273e66a1a2613aa",
+    "zh:5724e0af9ffac4a43b44d3bbd285906e0da17d31bb076f755b66ae3beb117c09",
+    "zh:6e471537639dd93eb1886f44a86cbd8379327b70c0aed1a10ed3ed5a72a3d68b",
+    "zh:7c0c0b40efe97539e0fa4c5e6134f8680f8566877922d9be0187e32184666f89",
+    "zh:93bacfa2382b3bc0442fde8410f4687ef961fe30e7febf503377e21ecd3d39c3",
+    "zh:9a32c8e9635bfe4cfd944206b8085702c1d12923141454be846befea210902ed",
+    "zh:aaa9da547952f3f3aec2bb600a5fb80299b98af3f8a6bdb9a348e680470bb1af",
+    "zh:adda9f74f0d4add27750043bfb897ae524dd62403a79d720859b6ee87c023852",
+    "zh:bae7c864b836e4e73482c78662a38faf1258cfdd392077cf2598ef682a6b4769",
+    "zh:dde00602e79e6ebfefc902c6094a509fbc88c6b66c7564e5f779671e98742844",
+    "zh:e9ddc3f902940f0127452a4c9a6683d396e15f89b21a3a321ad9fa81d87f3c69",
+    "zh:eccd443cf3d72ca2254bd4d2f9b16f8716628597a91aefc6f3d91ba64b148b7f",
+    "zh:eef3e2b476865b69a7f25c5d62d4c7b731b00464d234f4aeef9549d5af566e19",
   ]
 }
