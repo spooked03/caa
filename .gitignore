@@ -11,3 +11,5 @@ vcsa.json
 Thumbs.db
 
 .terraform/
+
+nsxt/.terraform/

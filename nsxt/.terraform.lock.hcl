@@ -1,10 +1,10 @@
-# This file is maintained automatically by "tofu init".
+# This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
-provider "registry.opentofu.org/hashicorp/nsxt" {
+provider "registry.terraform.io/vmware/nsxt" {
   version = "3.11.0"
   hashes = [
-    "h1:Wb416w7uxgTop0RxDzmaDhHCsV502E4b531hsm3t+G8=",
+    "h1:kImBL6zYpO2mEagG3mJxVUB23dxq6Gw78fNds943Vuc=",
     "zh:317cb4464e18b2e2d85f059c783d74394039c4282b334b4342a3441e0408cbdc",
     "zh:480dd158d87708bbc75b22169ded9d2036426580cba2e66ae273e66a1a2613aa",
     "zh:5724e0af9ffac4a43b44d3bbd285906e0da17d31bb076f755b66ae3beb117c09",
